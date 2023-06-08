@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     private float horizontalInput;
     private float verticalInput;
+    private bool breakInput = false;
     private float currentSteerAngle;
     private float currentBreakingForce;
 
@@ -32,6 +33,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         carRb = GetComponent<Rigidbody>();
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -46,6 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = Input.GetAxis(horizontalKeycode);
         verticalInput = Input.GetAxis(verticalKeycode);
+        breakInput = Input.GetKey(KeyCode.Space);
     }
     private void HandleMotor()
     {
@@ -58,13 +62,13 @@ public class PlayerController : MonoBehaviour
 
         if (verticalInput < 0 && localVel.z > 0.5)
         {
-            currentBreakingForce = BreakForce;
+            currentBreakingForce = BreakForce/2;
         }
         else if (verticalInput > 0 && localVel.z < -0.5)
         {
-            currentBreakingForce = BreakForce;
+            currentBreakingForce = BreakForce/2;
         }
-        else if(verticalInput == 0)
+        else if(breakInput)
         {
             currentBreakingForce = BreakForce;
         }
@@ -72,6 +76,7 @@ public class PlayerController : MonoBehaviour
         {
             currentBreakingForce = 0;
         }
+
         ApplyBreaks();
     }
     private void ApplyBreaks()

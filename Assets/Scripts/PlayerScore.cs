@@ -72,7 +72,7 @@ public class PlayerScore : MonoBehaviour
 
             countdownImage.fillAmount = totalTime / duration;
             totalTime += Time.deltaTime;
-            counddownText.text = (duration-totalTime).ToString("0.00") + "";
+            counddownText.text = Mathf.Clamp(duration-totalTime, 0, duration).ToString("0.00") + "";
             yield return null;
         }
         Debug.Log("we won");
