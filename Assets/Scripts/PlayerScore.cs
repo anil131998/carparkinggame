@@ -10,10 +10,17 @@ public class PlayerScore : MonoBehaviour
     [SerializeField] private GameObject CarInsidePlatform;
     [SerializeField] private Image countdownImage;
     [SerializeField] private TMP_Text counddownText;
+    [SerializeField] private GamePlayManager gamePlayManager;
+
+    private Rigidbody carRB;
 
     private bool reachTargetFront = false;
     private bool reachTargetBack = false;
 
+    private void Awake()
+    {
+        carRB = GetComponent<Rigidbody>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -39,10 +46,18 @@ public class PlayerScore : MonoBehaviour
             reachTargetFront = false;
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        
+    }
 
     private void checkIfCarReachedGoal()
     {
-        if(reachTargetBack && reachTargetFront)
+        if (reachTargetBack && reachTargetFront)
         {
             StartCoroutine(Countdown());
         }
@@ -51,18 +66,22 @@ public class PlayerScore : MonoBehaviour
 
     private IEnumerator Countdown()
     {
-        float duration = 2f; 
+        float duration = 4f; 
         float totalTime = 0;
 
         IdlePlatform.SetActive(false);
         CarInsidePlatform.SetActive(true);
         
-        Debug.Log("Timer Started");
+        //Debug.Log("Timer Started");
         while (totalTime <= duration)
         {
-            if(!(reachTargetBack && reachTargetFront))
+            Vector3 velocity = carRB.velocity;
+            Vector3 localVel = transform.InverseTransformDirection(velocity);
+            Debug.Log(localVel.magnitude);
+
+            if (!(reachTargetBack && reachTargetFront) && Mathf.Abs(localVel.magnitude) > 0.1f)
             {
-                Debug.Log("Car exited from goal");
+                //Debug.Log("Car exited from goal");
                 IdlePlatform.SetActive(true);
                 CarInsidePlatform.SetActive(false);
                 countdownImage.fillAmount = 0;
@@ -75,7 +94,8 @@ public class PlayerScore : MonoBehaviour
             counddownText.text = Mathf.Clamp(duration-totalTime, 0, duration).ToString("0.00") + "";
             yield return null;
         }
-        Debug.Log("we won");
+
+        gamePlayManager.GameWon();
     }
 
 }

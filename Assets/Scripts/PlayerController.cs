@@ -53,9 +53,6 @@ public class PlayerController : MonoBehaviour
     }
     private void HandleMotor()
     {
-        frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
-        frontRightWheelCollider.motorTorque = verticalInput * motorForce;
-        
         //Handles breaking
         Vector3 velocity = carRb.velocity;
         Vector3 localVel = transform.InverseTransformDirection(velocity);
@@ -76,6 +73,9 @@ public class PlayerController : MonoBehaviour
         {
             currentBreakingForce = 0;
         }
+
+        frontLeftWheelCollider.motorTorque = verticalInput * motorForce * (currentBreakingForce > 0 ? 0 : 1);
+        frontRightWheelCollider.motorTorque = verticalInput * motorForce * (currentBreakingForce > 0 ? 0 : 1);
 
         ApplyBreaks();
     }
