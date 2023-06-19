@@ -7,10 +7,11 @@ public class GamePlayManager : MonoBehaviour
 {
     [SerializeField] private GameObject victoryPanel;
     [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject defeatPanel;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale > 0)
         {
             if(!settingsPanel.activeSelf) openSettings();
         }
@@ -34,6 +35,12 @@ public class GamePlayManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Time.timeScale = 0;
         victoryPanel.SetActive(true);
+    }
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.Confined;
+        defeatPanel.SetActive(true);
     }
 
     public void RestartLevel()

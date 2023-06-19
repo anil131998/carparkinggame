@@ -48,7 +48,11 @@ public class PlayerScore : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        
+        int layer = collision.gameObject.layer;
+        if(layer == 3 || layer == 7 || layer == 10 || layer == 11)
+        {
+            gamePlayManager.GameOver();
+        }
     }
     private void OnCollisionExit(Collision collision)
     {
@@ -77,7 +81,7 @@ public class PlayerScore : MonoBehaviour
         {
             Vector3 velocity = carRB.velocity;
             Vector3 localVel = transform.InverseTransformDirection(velocity);
-            Debug.Log(localVel.magnitude);
+            //Debug.Log(localVel.magnitude);
 
             if (!(reachTargetBack && reachTargetFront) && Mathf.Abs(localVel.magnitude) > 0.1f)
             {
