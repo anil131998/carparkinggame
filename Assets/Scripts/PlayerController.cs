@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce * (currentBreakingForce > 0 ? 0 : 1);
         frontRightWheelCollider.motorTorque = verticalInput * motorForce * (currentBreakingForce > 0 ? 0 : 1);
 
+
         ApplyBreaks();
     }
     private void ApplyBreaks()
@@ -108,4 +109,6 @@ public class PlayerController : MonoBehaviour
         _wheelTransform.position = pos;
         _wheelTransform.rotation = rot;
     }
+
+
 }

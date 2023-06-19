@@ -473,17 +473,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
---- !u!114 &91113760 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2590455697292047931, guid: a28b6461e3fbeef4da10a18b75958acf, type: 3}
-  m_PrefabInstance: {fileID: 2590455697335713563}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &113945331 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5789023325157284357, guid: dab3d93fd2764dc45988adf7d412c1b3, type: 3}
@@ -1606,17 +1595,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3909803907222488771, guid: 1ab81048584c7ab4d9353f0fe0a03127, type: 3}
   m_PrefabInstance: {fileID: 1282052293}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &397607413 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2590455696993025774, guid: a28b6461e3fbeef4da10a18b75958acf, type: 3}
-  m_PrefabInstance: {fileID: 2590455697335713563}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &398912163
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5730,11 +5708,11 @@ PrefabInstance:
     - target: {fileID: 1610202650, guid: 471217351c4cea94ab695994ea2e2192, type: 3}
       propertyPath: counddownText
       value: 
-      objectReference: {fileID: 397607413}
+      objectReference: {fileID: 0}
     - target: {fileID: 1610202650, guid: 471217351c4cea94ab695994ea2e2192, type: 3}
       propertyPath: countdownImage
       value: 
-      objectReference: {fileID: 91113760}
+      objectReference: {fileID: 0}
     - target: {fileID: 1610202650, guid: 471217351c4cea94ab695994ea2e2192, type: 3}
       propertyPath: CarInsidePlatform
       value: 
@@ -8977,19 +8955,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5850232165284955716, guid: cef5222fb45ff8e47b78089477085ca9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000085247045
+      value: 0.000000008524706
       objectReference: {fileID: 0}
     - target: {fileID: 5850232165284955716, guid: cef5222fb45ff8e47b78089477085ca9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000011594321
+      value: -0.0000000011594324
       objectReference: {fileID: 0}
     - target: {fileID: 5850232165668514640, guid: cef5222fb45ff8e47b78089477085ca9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000016953926
+      value: -0.000000016953926
       objectReference: {fileID: 0}
     - target: {fileID: 5850232165668514640, guid: cef5222fb45ff8e47b78089477085ca9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000029366534
+      value: 0.0000000029366534
       objectReference: {fileID: 0}
     - target: {fileID: 5850232166810159078, guid: cef5222fb45ff8e47b78089477085ca9, type: 3}
       propertyPath: m_LocalRotation.y

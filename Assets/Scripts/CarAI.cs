@@ -10,7 +10,7 @@ public class CarAI : MonoBehaviour
     [SerializeField] private int startingWaypointIndex;
     [SerializeField] private float wayPointChangeBuffer = 1f; //1 second delay before each path switch
 
-    [SerializeField]private int currentWayPoint;
+    private int currentWayPoint;
     private Transform[] waypoints;
     private NavMeshAgent aIAgent;
     private Rigidbody aicarRb;
