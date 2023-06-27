@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class GamePlayManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class GamePlayManager : MonoBehaviour
     [SerializeField] private GameObject victoryPanel;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject defeatPanel;
+    [SerializeField] private AudioMixer audioMixer;
 
     private void Update()
     {
@@ -56,5 +58,16 @@ public class GamePlayManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-
+    public void changeMasterVolume(float volume)
+    {
+        audioMixer.SetFloat("masterVolume", volume);
+    }
+    public void changeMusicVolume(float volume)
+    {
+        audioMixer.SetFloat("musicVolume", volume);
+    }
+    public void changeFXVolume(float volume)
+    {
+        audioMixer.SetFloat("fxVolume", volume);
+    }
 }

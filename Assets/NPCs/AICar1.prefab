@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 1212545793}
   - component: {fileID: 695846392}
   - component: {fileID: 695846393}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AICar1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,6 @@ MonoBehaviour:
   waypointCollection: {fileID: 0}
   startingWaypointIndex: 5
   wayPointChangeBuffer: 1
-  currentWayPoint: 5
 --- !u!1 &3915726874404447345
 GameObject:
   m_ObjectHideFlags: 0
