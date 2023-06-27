@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class CarAI : MonoBehaviour
 {
 
+    //THIS IS A COMMENT
+
     [SerializeField] private GameObject waypointCollection;
     [SerializeField] private int startingWaypointIndex;
     [SerializeField] private float wayPointChangeBuffer = 1f; //1 second delay before each path switch
