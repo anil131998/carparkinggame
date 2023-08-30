@@ -70,4 +70,16 @@ public class GamePlayManager : MonoBehaviour
     {
         audioMixer.SetFloat("fxVolume", volume);
     }
+
+    private void OnEnable()
+    {
+        PlayerScore.gameWon += GameWon;
+        PlayerScore.gameOver += GameOver;
+    }
+    private void OnDisable()
+    {
+        PlayerScore.gameWon -= GameWon;
+        PlayerScore.gameOver -= GameOver;
+    }
+
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class PlayerScore : MonoBehaviour
 {
@@ -10,7 +11,13 @@ public class PlayerScore : MonoBehaviour
     [SerializeField] private GameObject CarInsidePlatform;
     [SerializeField] private Image countdownImage;
     [SerializeField] private TMP_Text counddownText;
-    [SerializeField] private GamePlayManager gamePlayManager;
+
+    //[SerializeField] private GamePlayManager gamePlayManager;
+
+    public delegate void onGameWon();
+    public delegate void onGameOver();
+    public static event onGameWon gameWon;
+    public static event onGameOver gameOver;
 
     private Rigidbody carRB;
 
@@ -51,7 +58,8 @@ public class PlayerScore : MonoBehaviour
         int layer = collision.gameObject.layer;
         if(layer == 3 || layer == 7 || layer == 10 || layer == 11)
         {
-            gamePlayManager.GameOver();
+            //gamePlayManager.GameOver();
+            gameOver?.Invoke();
         }
     }
     private void OnCollisionExit(Collision collision)
@@ -99,7 +107,8 @@ public class PlayerScore : MonoBehaviour
             yield return null;
         }
 
-        gamePlayManager.GameWon();
+        //gamePlayManager.GameWon();
+        gameWon?.Invoke();
     }
 
 }

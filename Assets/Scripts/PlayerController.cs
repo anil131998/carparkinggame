@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,8 +14,12 @@ public class PlayerController : MonoBehaviour
     private bool breakInput = false;
     private float currentSteerAngle;
     private float currentBreakingForce;
+    private string currentGear;
 
     private Rigidbody carRb;
+
+    public delegate void OnGearChanged(string gear);
+    public static event OnGearChanged onGearChanged;
 
     [SerializeField] private float motorForce;
     [SerializeField] private float BreakForce;
@@ -35,14 +40,18 @@ public class PlayerController : MonoBehaviour
         carRb = GetComponent<Rigidbody>();
 
         Cursor.lockState = CursorLockMode.Locked;
+        currentGear = "N";
     }
 
     private void Update()
     {
-        GetInput();
+        //GetInput();
         HandleMotor();
         HandleSteering();
         UpdateWheel();
+        UpdateGear();
+
+        //Debug.Log(verticalInput + " : " + horizontalInput);
     }
 
     private void GetInput()
@@ -57,17 +66,35 @@ public class PlayerController : MonoBehaviour
         Vector3 velocity = carRb.velocity;
         Vector3 localVel = transform.InverseTransformDirection(velocity);
 
+        //updating gear
+        if (localVel.z < 0.5 && localVel.z > -0.5) //not moving forward nor backward
+        {
+            currentGear = "N";
+        }
+        else if (localVel.z > 0.5)
+        {
+            currentGear = "F";
+        }
+        else if (localVel.z < -0.5)
+        {
+            currentGear = "R";
+        }
+
+        //updating breakforce
         if (verticalInput < 0 && localVel.z > 0.5)
         {
             currentBreakingForce = BreakForce/2;
+            currentGear = "B";
         }
         else if (verticalInput > 0 && localVel.z < -0.5)
         {
             currentBreakingForce = BreakForce/2;
+            currentGear = "B";
         }
         else if(breakInput)
         {
             currentBreakingForce = BreakForce;
+            currentGear = "B";
         }
         else
         {
@@ -110,5 +137,25 @@ public class PlayerController : MonoBehaviour
         _wheelTransform.rotation = rot;
     }
 
+    private void UpdateGear()
+    {
+        onGearChanged?.Invoke(currentGear);
+    }
+
+    //touch input controller
+    private void UpdateTouchInput(float hz, float vt)
+    {
+        horizontalInput = hz;
+        verticalInput = vt;
+    }
+
+    private void OnEnable()
+    {
+        TouchController.updateTouchInput += UpdateTouchInput;
+    }
+    private void OnDisable()
+    {
+        TouchController.updateTouchInput -= UpdateTouchInput;
+    }
 
 }
