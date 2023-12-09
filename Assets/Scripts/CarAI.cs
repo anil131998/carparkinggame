@@ -39,8 +39,10 @@ public class CarAI : MonoBehaviour
 
     private void Update()
     {
-        Vector3 velocity = aicarRb.velocity;
-        Vector3 localVel = transform.InverseTransformDirection(velocity);
+        if (!aIAgent.isOnNavMesh)
+        {
+            //return;
+        }
 
         wayPointChangeTimer -= Time.deltaTime;
 

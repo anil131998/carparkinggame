@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //GetInput();
+        GetInput();
         HandleMotor();
         HandleSteering();
         UpdateWheel();
@@ -143,19 +143,19 @@ public class PlayerController : MonoBehaviour
     }
 
     //touch input controller
-    private void UpdateTouchInput(float hz, float vt)
-    {
-        horizontalInput = hz;
-        verticalInput = vt;
-    }
+    //private void UpdateTouchInput(float hz, float vt)
+    //{
+    //    horizontalInput = hz;
+    //    verticalInput = vt;
+    //}
 
-    private void OnEnable()
-    {
-        TouchController.updateTouchInput += UpdateTouchInput;
-    }
-    private void OnDisable()
-    {
-        TouchController.updateTouchInput -= UpdateTouchInput;
-    }
+    //private void OnEnable()
+    //{
+    //    TouchController.updateTouchInput += UpdateTouchInput;
+    //}
+    //private void OnDisable()
+    //{
+    //    TouchController.updateTouchInput -= UpdateTouchInput;
+    //}
 
 }

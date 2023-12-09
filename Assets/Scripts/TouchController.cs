@@ -19,8 +19,8 @@ public class TouchController : MonoBehaviour
 
     private void Update()
     {
-        updateInput();
-        updateTouchInput?.Invoke(horizontalInput, verticalInput);
+        //updateInput();
+        //updateTouchInput?.Invoke(horizontalInput, verticalInput);
     }
 
     private void updateInput()

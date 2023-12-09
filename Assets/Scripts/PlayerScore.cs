@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using Cinemachine;
 
 public class PlayerScore : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class PlayerScore : MonoBehaviour
     [SerializeField] private GameObject CarInsidePlatform;
     [SerializeField] private Image countdownImage;
     [SerializeField] private TMP_Text counddownText;
+
+    [SerializeField] private GameObject hitCam;
+    [SerializeField] private GameObject HitCamPoint;
+    [SerializeField] private AudioSource crashSound;
 
     //[SerializeField] private GamePlayManager gamePlayManager;
 
@@ -59,12 +64,22 @@ public class PlayerScore : MonoBehaviour
         if(layer == 3 || layer == 7 || layer == 10 || layer == 11)
         {
             //gamePlayManager.GameOver();
-            gameOver?.Invoke();
+            StartCoroutine(GameOver(collision.GetContact(0).point));
         }
     }
     private void OnCollisionExit(Collision collision)
     {
         
+    }
+
+    private IEnumerator GameOver(Vector3 hitPosition)
+    {
+        crashSound.PlayOneShot(crashSound.clip);
+        HitCamPoint.transform.position = hitPosition;
+        hitCam.SetActive(true); 
+
+        yield return new WaitForSeconds(2f);
+        gameOver?.Invoke();
     }
 
     private void checkIfCarReachedGoal()
@@ -103,10 +118,12 @@ public class PlayerScore : MonoBehaviour
 
             countdownImage.fillAmount = totalTime / duration;
             totalTime += Time.deltaTime;
-            counddownText.text = Mathf.Clamp(duration-totalTime, 0, duration).ToString("0.00") + "";
+            counddownText.text = (int)Mathf.Clamp(duration-totalTime, 0, duration) + "";
             yield return null;
         }
 
+        countdownImage.fillAmount = 0;
+        counddownText.text = "";
         //gamePlayManager.GameWon();
         gameWon?.Invoke();
     }

@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject LevelSelection;
     [SerializeField] private GameObject SettingsMenu;
+    [SerializeField] private GameObject guideBook;
     [SerializeField] private AudioMixer audioMixer;
 
     private void Start()
@@ -34,6 +35,14 @@ public class MenuManager : MonoBehaviour
     public void openLevel(string levelName)
     {
         if (levelName != "") SceneManager.LoadScene(levelName);
+    }
+    public void OpenGuideBook()
+    {
+        guideBook.SetActive(true);
+    }
+    public void CloseGuideBook()
+    {
+        guideBook.SetActive(false);
     }
 
     public void changeMasterVolume(float volume)
