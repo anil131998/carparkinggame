@@ -12,4 +12,4 @@ This game is build to showcase following skills in C# and Unity
 Play the game Here
 [3D Car Parking - Github Pages](https://anil131998.github.io/carparkinggame/)
 
-"Please note that there will be initial loading time"
+"Please note that initial loading might take a little long"
